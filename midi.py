@@ -15,7 +15,15 @@ class MidiHandler:
                 print(f"Output Device {i}: {info[1].decode()}")
                 
         try:
-            self.midi_input = pygame.midi.Input(device_id)
+            try:
+                self.midi_input = pygame.midi.Input(device_id)
+            except:
+                # Try system default MIDI device
+                default_id = pygame.midi.get_default_input_id()
+                if default_id != -1:
+                    self.midi_input = pygame.midi.Input(default_id)
+                else:
+                    self.midi_input = None
             info = pygame.midi.get_device_info(device_id)
             print(f"\nUsing MIDI input device {device_id}: {info[1].decode()}")
         except Exception as e:

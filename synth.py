@@ -56,9 +56,9 @@ class AsyncSynthesizer:
                 }
                     
                 if output_device is None:
-                    # Fall back to dummy device if no output device found
-                    logger.warning("No output devices found, using dummy device")
-                    output_device = 'dummy'
+                    # Fall back to default system device
+                    logger.warning("No specific output device found, using system default")
+                    output_device = sd.default.device[1]
                 
                 # Configure stream with optimal settings for continuous audio
                 stream_settings = {
