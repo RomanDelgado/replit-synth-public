@@ -107,11 +107,8 @@ async def midi_listener(synth):
 
 def main():
     try:
-        print("Setting up environment for headless mode...")
-        os.environ['QT_QPA_PLATFORM'] = 'offscreen'
-        os.environ['QT_LOGGING_RULES'] = '*.debug=false;qt.qpa.*=false'
-        os.environ['XDG_RUNTIME_DIR'] = '/tmp/runtime-runner'
-        os.environ['DISPLAY'] = ':0'
+        print("Setting up environment for local display...")
+        os.environ['QT_AUTO_SCREEN_SCALE_FACTOR'] = '1'
 
         print("Initializing QApplication...")
         app = QApplication(sys.argv)
